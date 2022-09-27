@@ -1,0 +1,37 @@
+[
+  {
+    "name": "lista-orcamentos",
+    "path": "/lista-orcamentos",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Atifer_3bi_P1\\\\front-end\\\\Atifer\\\\pages\\\\lista-orcamentos.vue",
+    "chunkName": "pages/lista-orcamentos",
+    "_name": "_feee11b2"
+  },
+  {
+    "name": "tela-dados",
+    "path": "/tela-dados",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Atifer_3bi_P1\\\\front-end\\\\Atifer\\\\pages\\\\tela-dados.vue",
+    "chunkName": "pages/tela-dados",
+    "_name": "_6f0066de"
+  },
+  {
+    "name": "tela-orcamentos",
+    "path": "/tela-orcamentos",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Atifer_3bi_P1\\\\front-end\\\\Atifer\\\\pages\\\\tela-orcamentos.vue",
+    "chunkName": "pages/tela-orcamentos",
+    "_name": "_c49baf40"
+  },
+  {
+    "name": "orcamento-orcamento",
+    "path": "/orcamento/:orcamento?",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Atifer_3bi_P1\\\\front-end\\\\Atifer\\\\pages\\\\orcamento\\\\_orcamento.vue",
+    "chunkName": "pages/orcamento/_orcamento",
+    "_name": "_34a3af37"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Atifer_3bi_P1\\\\front-end\\\\Atifer\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_64cb91a8"
+  }
+]
