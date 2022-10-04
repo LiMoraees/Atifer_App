@@ -1,29 +1,66 @@
 package com.atifer.atifer.model;
 
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
 public class Orcamento {
-    private String nome, data, validade;
-    private int itens, id;
-    private static int idCounter = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String data, validade;
 
-    public Orcamento(){
-        this.id = ++Orcamento.idCounter;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_venda") 
+    @JsonManagedReference
+    private Venda venda;
+
+    @ManyToOne
+    @JsonBackReference
+    private Cliente cliente;
+
+    @ManyToMany(mappedBy = "orcamentos")
+    @JsonBackReference
+    private List<Itens> itens;
+
+    public Orcamento() {
     }
 
-    public Orcamento(String nome, String data, String validade, int itens) {
-        this.nome = nome;
-        this.data = data;
-        this.validade = validade;
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Itens> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Itens> itens) {
         this.itens = itens;
-        this.id = ++Orcamento.idCounter;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getData() {
@@ -42,17 +79,12 @@ public class Orcamento {
         this.validade = validade;
     }
 
-    public int getItens() {
-        return itens;
-    }
-
-    public void setItens(int itens) {
-        this.itens = itens;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+}
