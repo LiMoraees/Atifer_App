@@ -21,7 +21,7 @@ public class Cliente{
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_cliente")
-    @JsonManagedReference
+    // @JsonManagedReference
     private List<Orcamento> orcamentos;
 
     public Cliente() {

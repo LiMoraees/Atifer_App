@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+// import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Itens {
@@ -24,7 +26,7 @@ public class Itens {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "associacao_itens_orcamento", joinColumns = @JoinColumn(name = "fk_itens"), inverseJoinColumns = @JoinColumn(name = "fk_orcamento"))
-    @JsonManagedReference
+    @JsonBackReference
     private List<Orcamento> orcamentos;
 
     public Itens() {

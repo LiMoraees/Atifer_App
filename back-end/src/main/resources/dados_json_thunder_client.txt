@@ -1,0 +1,20 @@
+{
+  "data": "21/12/2000",
+  "validade": "27/12/2000",
+  "cliente": {
+    "nome": "Nome Teste",
+    "dataNas": "12/10/1955",
+    "telefone": "11997698300"
+  },
+  "venda": {
+    "data": "23/12/2000",
+    "formaPag": "Crédito",
+    "valor": 36
+  },
+  "itens": [{
+    "nome": "Item Teste",
+    "descricao": "Testando",
+    "valor": 36
+  }]
+}
+

@@ -8,13 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+// import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Orcamento {
@@ -25,15 +24,15 @@ public class Orcamento {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_venda") 
-    @JsonManagedReference
+    // @JsonManagedReference
     private Venda venda;
 
-    @ManyToOne
-    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL)
+    // @JsonBackReference
     private Cliente cliente;
 
     @ManyToMany(mappedBy = "orcamentos")
-    @JsonBackReference
+    // @JsonBackReference
     private List<Itens> itens;
 
     public Orcamento() {
