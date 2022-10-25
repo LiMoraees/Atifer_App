@@ -18,3 +18,17 @@
   }]
 }
 
+[POST] localhost/user
+{
+  "nickname": "Nomezinho",
+  "data-nascimento": "2004-12-30",
+  "nome": "Nome Teste",
+  "senha": "senha teste",
+  "email": "email@teste.com"
+}
+
+[GET] localhost/login
+{
+  "username": "Nomezinho",
+  "password": "senha teste"
+}
