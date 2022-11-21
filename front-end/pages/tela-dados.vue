@@ -19,8 +19,8 @@
         ></NuxtLink>
         <ul class="menu">
         <NuxtLink to="/tela-orcamentos" class="link">Orçamento</NuxtLink>
-        <NuxtLink to="" class="link">Pedido</NuxtLink>
-        <NuxtLink to="" class="link">Cliente</NuxtLink>
+        <NuxtLink to="/tela-pedido" class="link">Pedido</NuxtLink>
+        <NuxtLink to="/tela-cliente" class="link">Cliente</NuxtLink>
         </ul>
       </nav>
 

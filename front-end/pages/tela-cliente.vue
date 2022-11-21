@@ -10,7 +10,7 @@
       <header class="h2">
         <img class="atifer" src="../static/atifer.jpeg" alt="" />
         <p>Sistema de Gerenciamento de Vendas</p>
-        <p class="header1">Orçamentos</p>
+        <p class="header1">Clientes</p>
       </header>
 
       <nav class="left2">
@@ -18,15 +18,15 @@
           ><p id="linhamenu"><img id="iconemenu" src="../static/menu.png" /></p
         ></NuxtLink>
         <ul class="menu">
+          <li><a href="/tela-orcamentos">Orçamento</a></li>
           <li><a href="/tela-pedido">Pedido</a></li>
-          <li><a href="/tela-cliente">Cliente</a></li>
         </ul>
       </nav>
       <div class="espaco2"></div>
 
       <article class="right">
         <section class="s3">
-          <p>Inserir Dados do Orçamento:</p>
+          <p>Inserir Dados do Cliente:</p>
 
           <form action="" class="form" name="form" @reset="onReset">
             <section class="form">
@@ -36,12 +36,10 @@
                 id="nome"
                 name="nome"
                 placeholder="Nome Completo"
-                v-model = "form.nome"
+                v-model="form.nome"
               />
-              <small id="mensagem1"></small>
-              <div class="espaco"></div>
 
-              <label for="data"> Data Orçamento:</label>
+              <label for="dataNas"> Data Nascimento:</label>
               <input
                 type="data"
                 name="dia"
@@ -49,7 +47,7 @@
                 size="1"
                 max="31"
                 placeholder="dia"
-                v-model = "form.dia"
+                v-model="form.dia"
               />
               /
               <input
@@ -59,7 +57,7 @@
                 size="1"
                 max="12"
                 placeholder="mês"
-                v-model = "form.mes"
+                v-model="form.mes"
               />
               /
               <input
@@ -69,69 +67,28 @@
                 size="1"
                 max="2022"
                 placeholder="ano"
-                v-model = "form.ano"
+                v-model="form.ano"
               />
-              <small id="mensagem2"></small>
-              <div class="espaco"></div>
 
-              <p id="ad">Adicionar:</p>
-              <p class="botaoad">Estribo</p>
-              <p class="botaoad">Coluna</p>
-              <p class="botaoad bitola">Bitola</p>
-
-              <label for="validade">Validade Orçamento</label>
+              <label for="telefone">Telefone:</label>
               <input
-                type="data"
-                id="diav"
-                name="diav"
-                size="1"
-                max="31"
-                placeholder="dia"
-                v-model = "form.diav"
-              />/
-              <input
-                type="data"
-                id="mesv"
-                name="mesv"
-                size="1"
-                max="12"
-                placeholder="mês"
-                v-model = "form.mesv"
-              />/
-              <input
-                type="data"
-                id="anov"
-                name="anov"
-                size="1"
-                max="2020"
-                placeholder="ano"
-                v-model = "form.anov"
-              />
-              <small id="mensagem3"></small>
-              <div class="espaco"></div>
-
-              <label for="quantidade">Número de itens: </label>
-              <input 
-              type="number" 
-              name="numero" 
-              v-model = "form.numero"
+                type="text"
+                id="telefone"
+                name="telefone"
+                placeholder="Inserir Telefone"
+                v-model="form.telefone"
               />
 
               <div class="botao">
                 <input
                   class="botao"
                   type="submit"
-                  value="Gerar Novo Orçamento"
+                  value="Gerar Novo Cliente"
                   v-on:click="criaCadastro"
                 />
-                <a href="../ResultadoFormulario/index.html"
-                  >
-                  <NuxtLink to="/lista-orcamentos">
-                    <input
-                    class="botao"
-                    type="button"
-                    value="Orçamentos"
-                    />
+                <a href="../ResultadoFormulario/index.html">
+                  <NuxtLink to="/lista-clientes">
+                    <input class="botao" type="button" value="Clientes" />
                   </NuxtLink>
                 </a>
               </div>
@@ -149,9 +106,8 @@ export default {
     return {
       form: {
         nome: '',
-        data: '',
-        validade: '',
-        item: '',
+        dataNas: '',
+        telefone: ''
       },
       show: false,
     }
@@ -168,17 +124,18 @@ export default {
     criaCadastro(event) {
       event.preventDefault()
       console.log(this.form)
-      this.$axios.post('/recebeOrcamento', {
-        nome: this.form.nome,
-        data: this.form.dia + "/" + this.form.mes + "/" + this.form.ano,
-        validade: this.form.diav + "/" + this.form.mesv + "/" + this.form.anov,
-        itens: this.form.numero,
-      }).then((resp) =>{
-          if(resp.status === 200){
-            alert("Novo orçamento gerado!");
-            this.$router.push("/");
-          };
-      })
+      this.$axios
+        .post('/cliente', {
+          nome: this.form.nome,
+          dataNas: this.form.dia + '/' + this.form.mes + '/' + this.form.ano,
+          telefone: this.form.telefone
+        })
+        .then((resp) => {
+          if (resp.status === 200) {
+            alert('Novo Cliente gerado!')
+            this.$router.push('/')
+          }
+        })
     },
   },
 }
