@@ -3,22 +3,22 @@
       <form @submit.prevent="doLogin">
         <h2 class="mb-3">Login</h2>
         <div class="input">
-          <label for="email">Email address</label>
+          <label for="email">Nome</label>
           <input
             class="form-control"
             type="text"
-            name="email"
-            placeholder="email@adress.com"
+            name="text"
+            placeholder="Insira seu nome"
             v-model="formLogin.username"
           />
         </div>
         <div class="input">
-          <label for="password">Password</label>
+          <label for="password">Senha</label>
           <input
             class="form-control"
             type="password"
             name="password"
-            placeholder="password123"
+            placeholder="senha123"
             v-model="formLogin.password"
           />
         </div>
@@ -46,9 +46,7 @@
   </template>
   
   <script>
-  import { btoa } from 'buffer';
 
- 
   export default {
     // Define que essa página está acessível para todo mundo
     auth: false,
@@ -57,7 +55,7 @@
       return {
         formLogin:{
           username: "teste",
-          password: "senha",
+          password: "1234",
         }        
       };
     },
@@ -93,7 +91,7 @@
             console.log('Successfully Logged In')
             console.log(this.$auth.strategy.token)
             console.log(this.$auth.strategy)
-            this.$router.push('/outra_pagina')
+            this.$router.push('/')
           }
         }catch(error){
           console.log(error);

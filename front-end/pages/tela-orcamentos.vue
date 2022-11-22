@@ -36,7 +36,7 @@
                 id="nome"
                 name="nome"
                 placeholder="Nome Completo"
-                v-model = "form.nome"
+                v-model="form.nome"
               />
               <small id="mensagem1"></small>
               <div class="espaco"></div>
@@ -49,7 +49,7 @@
                 size="1"
                 max="31"
                 placeholder="dia"
-                v-model = "form.dia"
+                v-model="form.dia"
               />
               /
               <input
@@ -59,7 +59,7 @@
                 size="1"
                 max="12"
                 placeholder="mês"
-                v-model = "form.mes"
+                v-model="form.mes"
               />
               /
               <input
@@ -69,7 +69,7 @@
                 size="1"
                 max="2022"
                 placeholder="ano"
-                v-model = "form.ano"
+                v-model="form.ano"
               />
               <small id="mensagem2"></small>
               <div class="espaco"></div>
@@ -87,7 +87,7 @@
                 size="1"
                 max="31"
                 placeholder="dia"
-                v-model = "form.diav"
+                v-model="form.diav"
               />/
               <input
                 type="data"
@@ -96,7 +96,7 @@
                 size="1"
                 max="12"
                 placeholder="mês"
-                v-model = "form.mesv"
+                v-model="form.mesv"
               />/
               <input
                 type="data"
@@ -105,17 +105,13 @@
                 size="1"
                 max="2020"
                 placeholder="ano"
-                v-model = "form.anov"
+                v-model="form.anov"
               />
               <small id="mensagem3"></small>
               <div class="espaco"></div>
 
               <label for="quantidade">Número de itens: </label>
-              <input 
-              type="number" 
-              name="numero" 
-              v-model = "form.numero"
-              />
+              <input type="number" name="numero" v-model="form.numero" />
 
               <div class="botao">
                 <input
@@ -124,14 +120,9 @@
                   value="Gerar Novo Orçamento"
                   v-on:click="criaCadastro"
                 />
-                <a href="../ResultadoFormulario/index.html"
-                  >
+                <a href="../ResultadoFormulario/index.html">
                   <NuxtLink to="/lista-orcamentos">
-                    <input
-                    class="botao"
-                    type="button"
-                    value="Orçamentos"
-                    />
+                    <input class="botao" type="button" value="Orçamentos" />
                   </NuxtLink>
                 </a>
               </div>
@@ -145,13 +136,19 @@
 
 <script>
 export default {
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
   data() {
     return {
       form: {
         nome: '',
-        data: '',
-        validade: '',
-        item: '',
+        dia: '',
+        diav: '',
+        mes: '',
+        mesv: '',
+        ano: '',
+        anov: '',
+        numero: '',
       },
       show: false,
     }
@@ -168,17 +165,20 @@ export default {
     criaCadastro(event) {
       event.preventDefault()
       console.log(this.form)
-      this.$axios.post('/recebeOrcamento', {
-        nome: this.form.nome,
-        data: this.form.dia + "/" + this.form.mes + "/" + this.form.ano,
-        validade: this.form.diav + "/" + this.form.mesv + "/" + this.form.anov,
-        itens: this.form.numero,
-      }).then((resp) =>{
-          if(resp.status === 200){
-            alert("Novo orçamento gerado!");
-            this.$router.push("/");
-          };
-      })
+      this.$axios
+        .post('/orcamento', {
+          cliente: this.form.nome,
+          data: this.form.dia + '/' + this.form.mes + '/' + this.form.ano,
+          validade:
+            this.form.diav + '/' + this.form.mesv + '/' + this.form.anov,
+          itens: this.form.numero
+        })
+        .then((resp) => {
+          if (resp.status === 200) {
+            alert('Novo orçamento gerado!')
+            this.$router.push('/')
+          }
+        })
     },
   },
 }

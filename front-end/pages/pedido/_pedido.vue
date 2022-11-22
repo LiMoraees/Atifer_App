@@ -4,21 +4,21 @@
       <b-row>
         <b-col cols="" class="bg-info mt-2">
           <div class="text-center mb-3 title text-secundario font-weight-bold">
-            <span>Cliente: </span>{{ orcamento.nome }}
+            <span>Cliente: </span>{{ pedido.nome }}
           </div>
           <div class="text-center mb-3">
-            <span>Data Orçamento: {{ orcamento.data }}</span>
+            <span>Data Orçamento: {{ pedido.data }}</span>
           </div>
 
           <div class="text-center mb-3">
-            <span>Data Validade: {{ orcamento.validade }}</span>
+            <span>Número de itens: {{ pedido.itens }}</span>
           </div>
 
           <div class="text-center mb-3">
-            <span>Número de itens: {{ orcamento.itens }}</span>
+            <span>Número de itens: {{ pedido.valor }}</span>
           </div>
 
-          <b-button v-on:click="deletaOrcamento" id="botao"> Deletar </b-button>
+          <b-button v-on:click="deletapedido" id="botao"> Deletar </b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -30,22 +30,22 @@ export default {
   // Define que essa página só será acessível se o login tiver sido realizado
   middleware: ['auth'],
   async asyncData({ $axios, params }) {
-    const idOrcamento = params.orcamento
-    const response = await $axios.get('/orcamento/' + idOrcamento)
-    const orcamento = response.data
-    return { orcamento }
+    const idPedido = params.pedido
+    const response = await $axios.get('/pedido/' + idPedido)
+    const pedido = response.data
+    return { pedido }
   },
 
   methods: {
-    deletaOrcamento() {
-      const id = this.$route.params.orcamento
-      this.$axios.delete('/deletaOrcamento/' + id)
+    deletapedido() {
+      const id = this.$route.params.pedido
+      this.$axios.delete('/deletaPedido/' + id)
     },
   },
 
   computed: {
     pagina() {
-      return this.orcamento.nome.replace(' ', '').toLocaleLowerCase()
+      return this.pedido.nome.replace(' ', '').toLocaleLowerCase()
     },
   },
 }

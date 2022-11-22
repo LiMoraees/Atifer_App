@@ -15,21 +15,22 @@
 </template>
 
 <script>
-import ItemListaOrcamentos from '~/components/ItemListaOrcamentos.vue';
+import ItemListaOrcamentos from '~/components/ItemListaOrcamentos.vue'
 export default {
-    name: "IndexPage",
-    data() {
-        return {
-          orcamentos: [] 
-        };
-    },
-   
-    async mounted(){
-      const response = await this.$axios.get('/orcamento');
-      this.orcamentos = response.data;
-     
-     },
-    
-    components: { ItemListaOrcamentos }
+  name: 'IndexPage',
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
+  data() {
+    return {
+      orcamentos: [],
+    }
+  },
+
+  async mounted() {
+    const response = await this.$axios.get('/orcamento')
+    this.orcamentos = response.data
+  },
+
+  components: { ItemListaOrcamentos },
 }
 </script>

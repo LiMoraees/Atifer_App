@@ -10,7 +10,8 @@
       <p>Sistema de Gerenciamento de Vendas</p>
     </header>
     <nav>
-      <NuxtLink to="/tela-dados"><p id="linhamenu"><img id="iconemenu" src="../static/menu.png" /></p
+      <NuxtLink to="/tela-dados"
+        ><p id="linhamenu"><img id="iconemenu" src="../static/menu.png" /></p
       ></NuxtLink>
       <ul class="menu">
         <NuxtLink to="/tela-orcamentos" class="link">Orçamento</NuxtLink>
@@ -24,6 +25,8 @@
 <script>
 export default {
   name: 'IndexPage',
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
 }
 </script>
 <style>
@@ -33,7 +36,7 @@ body {
   height: 100%;
   width: 100%;
 }
-nav{
+nav {
   height: 700px !important;
   width: 100% !important;
   margin: 20px;
@@ -88,7 +91,7 @@ ul.menu .link {
 @media screen and (max-width: 400px) {
   header {
     font-size: 30px;
-    }
+  }
   img.atifer {
     margin: 20px;
     width: 30%;

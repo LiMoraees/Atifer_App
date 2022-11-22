@@ -14,11 +14,8 @@ public class Vendedor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
-    private String nickname;
     private String nome;
     private String senha;
-    private String email;
-    private Date dataNascimento;
 
     public Vendedor() {
     }
@@ -29,14 +26,6 @@ public class Vendedor {
 
     public void setID(Long iD) {
         ID = iD;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getNome() {
@@ -53,22 +42,6 @@ public class Vendedor {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
 }

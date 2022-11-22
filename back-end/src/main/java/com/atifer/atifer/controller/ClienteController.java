@@ -36,7 +36,7 @@ public class ClienteController {
         clienteRepository.save(novoCliente);
     }
 
-    @DeleteMapping("/cliente/{id}") 
+    @DeleteMapping("/deletaCliente/{id}") 
     public void deletacliente(@PathVariable("id") Long id){
         clienteRepository.deleteById(id);
     }

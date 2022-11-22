@@ -4,10 +4,7 @@
       <h1>Clientes</h1>
 
       <div :key="cliente.id" v-for="cliente in clientes">
-        <ItemListaClientes
-          :idcliente="cliente.id"
-          :cliente="cliente.nome"
-        >
+        <ItemListaClientes :idCliente="cliente.id" :cliente="cliente.nome">
         </ItemListaClientes>
       </div>
     </b-container>
@@ -15,21 +12,22 @@
 </template>
 
 <script>
-import ItemListaClientes from '~/components/ItemListaClientes.vue';
+import ItemListaClientes from '~/components/ItemListaClientes.vue'
 export default {
-    name: "IndexPage",
-    data() {
-        return {
-          clientes: [] 
-        };
-    },
-   
-    async mounted(){
-      const response = await this.$axios.get('/cliente');
-      this.clientes = response.data;
-     
-     },
-    
-    components: { ItemListaClientes }
+  name: 'IndexPage',
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
+  data() {
+    return {
+      clientes: [],
+    }
+  },
+
+  async mounted() {
+    const response = await this.$axios.get('/cliente')
+    this.clientes = response.data
+  },
+
+  components: { ItemListaClientes },
 }
 </script>

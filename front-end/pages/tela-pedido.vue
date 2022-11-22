@@ -10,7 +10,7 @@
       <header class="h2">
         <img class="atifer" src="../static/atifer.jpeg" alt="" />
         <p>Sistema de Gerenciamento de Vendas</p>
-        <p class="header1">Clientes</p>
+        <p class="header1">Pedido</p>
       </header>
 
       <nav class="left2">
@@ -18,15 +18,15 @@
           ><p id="linhamenu"><img id="iconemenu" src="../static/menu.png" /></p
         ></NuxtLink>
         <ul class="menu">
-          <li><a href="/tela-orcamentos">Orçamento</a></li>
-          <li><a href="/tela-pedido">Pedido</a></li>
+          <li><a href="/tela-orcamento">Orçamento</a></li>
+          <li><a href="/tela-cliente">Cliente</a></li>
         </ul>
       </nav>
       <div class="espaco2"></div>
 
       <article class="right">
         <section class="s3">
-          <p>Inserir Dados do Cliente:</p>
+          <p>Inserir Dados do Pedido:</p>
 
           <form action="" class="form" name="form" @reset="onReset">
             <section class="form">
@@ -38,8 +38,10 @@
                 placeholder="Nome Completo"
                 v-model="form.nome"
               />
+              <small id="mensagem1"></small>
+              <div class="espaco"></div>
 
-              <label for="dataNas"> Data Nascimento:</label>
+              <label for="data"> Data Pedido:</label>
               <input
                 type="data"
                 name="dia"
@@ -69,26 +71,39 @@
                 placeholder="ano"
                 v-model="form.ano"
               />
+              <small id="mensagem2"></small>
+              <div class="espaco"></div>
 
-              <label for="telefone">Telefone:</label>
+              <p id="ad">Adicionar:</p>
+              <p class="botaoad">Estribo</p>
+              <p class="botaoad">Coluna</p>
+              <p class="botaoad bitola">Bitola</p>
+
+              <small id="mensagem3"></small>
+              <div class="espaco"></div>
+
+              <label for="valor">Valor</label>
               <input
-                type="text"
-                id="telefone"
-                name="telefone"
-                placeholder="Inserir Telefone"
-                v-model="form.telefone"
+                type="number"
+                id="valor"
+                name="valor"
+                placeholder=""
+                v-model="form.valor"
               />
+
+              <label for="quantidade">Número de itens: </label>
+              <input type="number" name="numero" v-model="form.numero" />
 
               <div class="botao">
                 <input
                   class="botao"
                   type="submit"
-                  value="Gerar Novo Cliente"
+                  value="Gerar Novo Pedido"
                   v-on:click="criaCadastro"
                 />
                 <a href="../ResultadoFormulario/index.html">
-                  <NuxtLink to="/lista-clientes">
-                    <input class="botao" type="button" value="Clientes" />
+                  <NuxtLink to="/lista-orcamentos">
+                    <input class="botao" type="button" value="Pedidos" />
                   </NuxtLink>
                 </a>
               </div>
@@ -108,8 +123,10 @@ export default {
     return {
       form: {
         nome: '',
-        dataNas: '',
-        telefone: '',
+        dia: '',
+        mes: '',
+        ano: '',
+        valor: '',
       },
       show: false,
     }
@@ -127,14 +144,16 @@ export default {
       event.preventDefault()
       console.log(this.form)
       this.$axios
-        .post('/cliente', {
-          nome: this.form.nome,
-          dataNas: this.form.dia + '/' + this.form.mes + '/' + this.form.ano,
-          telefone: this.form.telefone,
+        .post('/orcamento', {
+          cliente: this.form.nome,
+          data: this.form.dia + '/' + this.form.mes + '/' + this.form.ano,
+          validade:
+            this.form.diav + '/' + this.form.mesv + '/' + this.form.anov,
+          itens: this.form.numero
         })
         .then((resp) => {
           if (resp.status === 200) {
-            alert('Novo Cliente gerado!')
+            alert('Novo orçamento gerado!')
             this.$router.push('/')
           }
         })

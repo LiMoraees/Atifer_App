@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Encontra um vendedor no banco de dados
-        Vendedor user = vendedorRepository.findByNickname(username).stream().findFirst().get();
+        Vendedor user = vendedorRepository.findByNome(username).stream().findFirst().get();
         // Depois retorna um objeto UserDetailsImpl com base no vendedor encontrado
         return new UserDetailsImpl(user);        
     } 

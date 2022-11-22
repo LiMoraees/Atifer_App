@@ -12,7 +12,7 @@ public class UserDetailsImpl implements UserDetails{
     private String password;
 
     public UserDetailsImpl(Vendedor user){
-        this.username = user.getNickname();
+        this.username = user.getNome();
         this.password = user.getSenha();
     }
 

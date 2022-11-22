@@ -12,32 +12,37 @@
         <img class="atifer" src="../static/atifer.jpeg" alt="" />
         <p class="header">Sistema de Gerenciamento de Vendas</p>
       </header>
-  
-  <div class="tudo">
-      <nav class="left1">
-        <NuxtLink to="/tela-dados"><p id="linhamenu"><img id="iconemenu" src="../static/menu.png" /></p
-        ></NuxtLink>
-        <ul class="menu">
-        <NuxtLink to="/tela-orcamentos" class="link">Orçamento</NuxtLink>
-        <NuxtLink to="/tela-pedido" class="link">Pedido</NuxtLink>
-        <NuxtLink to="/tela-cliente" class="link">Cliente</NuxtLink>
-        </ul>
-      </nav>
 
-      <div class="espaco"></div>
+      <div class="tudo">
+        <nav class="left1">
+          <NuxtLink to="/tela-dados"
+            ><p id="linhamenu">
+              <img id="iconemenu" src="../static/menu.png" /></p
+          ></NuxtLink>
+          <ul class="menu">
+            <NuxtLink to="/tela-orcamentos" class="link">Orçamento</NuxtLink>
+            <NuxtLink to="/tela-pedido" class="link">Pedido</NuxtLink>
+            <NuxtLink to="/tela-cliente" class="link">Cliente</NuxtLink>
+          </ul>
+        </nav>
 
-      <article class="right1">
-        <section id="s1">Dados da empresa:</section>
-        <section id="s2">Lembretes Importantes:</section>
-      </article>
-</div>
+        <div class="espaco"></div>
+
+        <article class="right1">
+          <section id="s1">Dados da empresa:</section>
+          <section id="s2">Lembretes Importantes:</section>
+        </article>
+      </div>
       <script src="script.js"></script>
     </body>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  // Define que essa página só será acessível se o login tiver sido realizado
+  middleware: ['auth'],
+}
 </script>
 
 <style>
@@ -56,8 +61,6 @@ header {
   width: 100%;
   height: 200px;
 }
-
-
 
 img.atifer {
   opacity: 0.9;
